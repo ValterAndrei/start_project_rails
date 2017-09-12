@@ -15,7 +15,7 @@ $ docker-compose build
 3. Construir o projeto
 
 ```
-$ docker-compose run --rm web rails new . --force --database=postgresql --webpack --skip-coffee
+$ docker-compose run --rm web rails new . -T --force --database=postgresql --webpack --skip-coffee
 $ docker-compose build
 $ docker-compose run --rm web rails webpacker:install
 $ docker-compose run --rm web rails webpacker:install:vue
@@ -85,4 +85,3 @@ $ docker-compose up web
 `
 http://localhost:3000
 `
-
