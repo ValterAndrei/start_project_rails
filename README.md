@@ -17,7 +17,8 @@ $ docker-compose build
 ```
 $ docker-compose run --rm web rails new . -T --force --database=postgresql --webpack --skip-coffee
 $ docker-compose build
-$ docker-compose run --rm web rails webpacker:install
+
+Opcional:
 $ docker-compose run --rm web rails webpacker:install:vue
 ```
 
@@ -54,11 +55,11 @@ test:
 $ docker-compose run --rm web rails db:create
 ```
 
-7. Editar o arquivo `config/webpacker.yml` (linha 37)
+7. Editar o arquivo `config/webpacker.yml`
 
 ```
 dev_server:
-  host: 0.0.0.0 # or the docker IP
+  host: 0.0.0.0
 ```
 
 8. Editar o arquivo `config/environments/development.rb` (inserir no inicio do código)
