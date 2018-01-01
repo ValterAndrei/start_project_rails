@@ -67,6 +67,9 @@ dev_server:
 ```
 # Make javascript_pack_tag load assets from webpack-dev-server.
 config.x.webpacker[:dev_server_host] = "http://localhost:8080"
+
+# Add to whitelist the '172.18.0.1' network space in the Web Console config.
+config.web_console.whitelisted_ips = '172.18.0.1'
 ```
 
 9. Inserir a tag na View em que desejar:
