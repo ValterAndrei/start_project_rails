@@ -25,7 +25,7 @@ $ docker-compose run --rm web bundle install --path /bundle/vendor111
 ```
 $ docker-compose run --rm web bundle exec rails new . -T --force --database=postgresql --webpack --skip-coffee --skip-bundle
 
-Opcional:
+# optional
 $ docker-compose run --rm web bundle exec rails webpacker:install:vue
 ```
 
@@ -100,6 +100,7 @@ http://localhost:3000
 `
 
 
-Fonte:
-https://blog.codeminer42.com/zero-to-up-and-running-a-rails-project-only-using-docker-20467e15f1be
-https://hovancik.net/blog/2017/07/02/creating-new-rails-and-vue-js-app-with-docker/
+# Fonte
+
+[blog 1](https://blog.codeminer42.com/zero-to-up-and-running-a-rails-project-only-using-docker-20467e15f1be)
+[blog 2](https://hovancik.net/blog/2017/07/02/creating-new-rails-and-vue-js-app-with-docker/)
