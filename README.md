@@ -16,7 +16,7 @@ $ docker-compose build
 
 ```
 $ docker-compose run --rm -u root web bash -c "mkdir -p /bundle/vendor && chown -R railsuser /bundle/vendor"
-$ docker-compose run --rm web bundle install --path /bundle/vendor111
+$ docker-compose run --rm web bundle install --path /bundle/vendor
 
 ```
 
