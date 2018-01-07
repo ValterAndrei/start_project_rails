@@ -1,21 +1,28 @@
 version: '3'
 services:
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/app
+      - bundle_path:/bundle
+    environment:
+      - BUNDLE_PATH=/bundle/vendor
+      - BUNDLE_APP_CONFIG=/app/.bundle
+    user: railsuser
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - webpacker
   db:
     image: postgres
   webpacker:
     build: .
     command: bundle exec bin/webpack-dev-server
     volumes:
-      - .:/myapp
+      - .:/app
     ports:
       - "8080:8080"
-  web:
-    build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    volumes:
-      - .:/myapp
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
-      - webpacker
+volumes:
+  bundle_path:

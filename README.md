@@ -12,57 +12,64 @@ $ rm -rf .git
 $ docker-compose build
 ```
 
-3. Construir o projeto
+3. Instalar gems
 
 ```
-$ docker-compose run --rm web rails new . -T --force --database=postgresql --webpack --skip-coffee
-$ docker-compose build
+$ docker-compose run --rm -u root web bash -c "mkdir -p /bundle/vendor && chown -R railsuser /bundle/vendor"
+$ docker-compose run --rm web bundle install --path /bundle/vendor111
+
+```
+
+4. Construir o projeto
+
+```
+$ docker-compose run --rm web bundle exec rails new . -T --force --database=postgresql --webpack --skip-coffee --skip-bundle
 
 Opcional:
-$ docker-compose run --rm web rails webpacker:install:vue
+$ docker-compose run --rm web bundle exec rails webpacker:install:vue
 ```
 
-4. Se for linux executar este comando
+5. Se for linux executar este comando (caso precise)
 
 ```
 $ sudo chown -R $USER:$USER .
 ```
 
-5. Editar o arquivo `config/database.yml`
+6. Editar o arquivo `config/database.yml`
 
 ```
-default: &default
+development: &default
   adapter: postgresql
+  database: myapp_development
   encoding: unicode
   host: db
   username: postgres
   password:
   pool: 5
 
-development:
-  <<: *default
-  database: myapp_development
-
-
 test:
   <<: *default
   database: myapp_test
+
+production:
+  <<: *default
+  database: myapp_production
 ```
 
-6. Criar banco de dados
+7. Criar banco de dados
 
 ```
-$ docker-compose run --rm web rails db:create
+$ docker-compose run --rm web bundle exec rails db:setup
 ```
 
-7. Editar o arquivo `config/webpacker.yml`
+8. Editar o arquivo `config/webpacker.yml`
 
 ```
 dev_server:
   host: 0.0.0.0
 ```
 
-8. Editar o arquivo `config/environments/development.rb` (inserir no inicio do código)
+9. Editar o arquivo `config/environments/development.rb` (inserir no inicio do código)
 
 ```
 # Make javascript_pack_tag load assets from webpack-dev-server.
@@ -72,20 +79,27 @@ config.x.webpacker[:dev_server_host] = "http://localhost:8080"
 config.web_console.whitelisted_ips = '172.18.0.1'
 ```
 
-9. Inserir a tag na View em que desejar:
+10. Inserir a tag na View em que desejar:
 
 ```
 <%= javascript_pack_tag 'hello_vue' %>
 ```
 
-10. Subir aplicação
+11. Subir aplicação
 
 ```
 $ docker-compose up web
+# or
+$ docker-compose run --rm web bundle exec bash
 ```
 
-11. Acessar a página localhost
+12. Acessar a página localhost
 
 `
 http://localhost:3000
 `
+
+
+Fonte:
+https://blog.codeminer42.com/zero-to-up-and-running-a-rails-project-only-using-docker-20467e15f1be
+https://hovancik.net/blog/2017/07/02/creating-new-rails-and-vue-js-app-with-docker/
