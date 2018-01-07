@@ -103,4 +103,5 @@ http://localhost:3000
 # Fonte
 
 [blog 1](https://blog.codeminer42.com/zero-to-up-and-running-a-rails-project-only-using-docker-20467e15f1be)
+<br />
 [blog 2](https://hovancik.net/blog/2017/07/02/creating-new-rails-and-vue-js-app-with-docker/)
