@@ -26,6 +26,8 @@ $ docker-compose run --rm web bundle install --path /bundle/vendor
 $ docker-compose run --rm web bundle exec rails new . -T --force --database=postgresql --webpack --skip-coffee --skip-bundle
 
 # optional
+$ docker-compose run --rm web bundle install
+$ docker-compose run --rm web bundle exec rails webpacker:install
 $ docker-compose run --rm web bundle exec rails webpacker:install:vue
 ```
 
