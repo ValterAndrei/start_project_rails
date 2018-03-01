@@ -14,3 +14,8 @@ RUN useradd -m -s /bin/bash -u 1000 railsuser
 user railsuser
 
 WORKDIR /app
+
+ADD Gemfile /app/Gemfile
+ADD Gemfile.lock /app/Gemfile.lock
+RUN bundle install
+ADD . /app

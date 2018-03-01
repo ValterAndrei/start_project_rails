@@ -92,7 +92,7 @@ config.web_console.whitelisted_ips = '172.18.0.1'
 ```
 $ docker-compose up web
 # or
-$ docker-compose run --rm web bundle exec bash
+$ docker-compose run --rm web bash
 ```
 
 12. Acessar a página localhost
