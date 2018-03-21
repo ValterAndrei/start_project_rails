@@ -9,7 +9,6 @@ services:
     environment:
       - BUNDLE_PATH=/bundle/vendor
       - BUNDLE_APP_CONFIG=/app/.bundle
-    user: railsuser
     ports:
       - "3000:3000"
     depends_on:
