@@ -16,6 +16,7 @@ $ docker-compose build
 
 ```
 $ docker-compose run --rm -u root web bash -c "mkdir -p /bundle/vendor && chown -R railsuser /bundle/vendor"
+
 $ docker-compose run --rm web bundle install --path /bundle/vendor
 
 ```
@@ -25,12 +26,13 @@ $ docker-compose run --rm web bundle install --path /bundle/vendor
 ```
 $ docker-compose run --rm web bundle exec rails new . -T --force --database=postgresql --webpack --skip-coffee --skip-bundle
 
-# optional
 $ docker-compose run --rm web bundle install
-$ docker-compose run --rm web bundle exec rails webpacker:install:react
+
+# optional
+$ docker-compose run --rm web rails webpacker:install:vue
 ```
 
-5. Se for linux executar este comando (caso precise)
+5. Dar permissão para editar os arquivos do projeto
 
 ```
 $ chmod -R 777 .
@@ -60,7 +62,7 @@ production:
 7. Criar banco de dados
 
 ```
-$ docker-compose run --rm web bundle exec rails db:setup
+$ docker-compose run --rm web rails db:setup
 ```
 
 8. Editar o arquivo `config/webpacker.yml`
@@ -90,7 +92,7 @@ config.web_console.whitelisted_ips = '172.18.0.1'
 
 ```
 $ docker-compose up web
-# or
+# bash:
 $ docker-compose run --rm web bash
 ```
 
