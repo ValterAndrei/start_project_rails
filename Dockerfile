@@ -12,7 +12,7 @@ apt-get update && apt-get install -y yarn
 
 RUN useradd -m -s /bin/bash -u 1000 railsuser
 user railsuser
-usermod -aG sudo railsuser
+RUN usermod -aG sudo railsuser
 
 WORKDIR /app
 
