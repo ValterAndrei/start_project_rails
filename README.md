@@ -33,7 +33,7 @@ $ docker-compose run --rm web bundle exec rails webpacker:install:react
 5. Se for linux executar este comando (caso precise)
 
 ```
-$ sudo chown -R $USER:$USER .
+$ chmod -R 777 .
 ```
 
 6. Editar o arquivo `config/database.yml`
