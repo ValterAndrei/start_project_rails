@@ -27,8 +27,7 @@ $ docker-compose run --rm web bundle exec rails new . -T --force --database=post
 
 # optional
 $ docker-compose run --rm web bundle install
-$ docker-compose run --rm web bundle exec rails webpacker:install
-$ docker-compose run --rm web bundle exec rails webpacker:install:vue
+$ docker-compose run --rm web bundle exec rails webpacker:install:react
 ```
 
 5. Se for linux executar este comando (caso precise)
