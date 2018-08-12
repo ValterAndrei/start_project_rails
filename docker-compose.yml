@@ -1,14 +1,17 @@
 version: '3.3'
+
+volumes:
+  gems-app:
+
 services:
   web:
+    tty: true
+    stdin_open: true
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - .:/app
-      - bundle_path:/bundle
-    environment:
-      - BUNDLE_PATH=/bundle/vendor
-      - BUNDLE_APP_CONFIG=/app/.bundle
+      - ./:/usr/src/app
+      - gems-app:/usr/local/bundle
     ports:
       - "3000:3000"
     depends_on:
@@ -16,6 +19,8 @@ services:
       - webpacker
   db:
     image: postgres
+    ports:
+      - "3306:3306"
   webpacker:
     build: .
     command: bundle exec webpack-dev-server
@@ -23,5 +28,5 @@ services:
       - .:/app
     ports:
       - "8080:8080"
-volumes:
-  bundle_path:
+    volumes:
+      - gems-app:/usr/local/bundle
