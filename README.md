@@ -63,20 +63,33 @@ dev_server:
   host: 0.0.0.0
 ```
 
-8. Editar o arquivo `config/environments/development.rb` (inserir no inicio do código)
+8. Instalar a Gem foreman `Gemfile`
+
+```
+  gem 'foreman'
+```
+
+9. Criar na raiz do projeto o arquivo `Procfile.dev` e inserir o código abaixo
+
+```
+  web: bundle exec rails s -p 3000 -b '0.0.0.0'
+  webpacker: ./bin/webpack-dev-server
+```
+
+10. Editar o arquivo `config/environments/development.rb` (inserir no inicio do código)
 
 ```
 # Add to whitelist the '172.18.0.1' network space in the Web Console config.
 config.web_console.whitelisted_ips = '172.18.0.1'
 ```
 
-9. Inserir a tag na View em que desejar:
+11. Inserir a tag na View em que desejar:
 
 ```
 <%= javascript_pack_tag 'hello_react' %>
 ```
 
-10. Subir aplicação
+12. Subir aplicação
 
 ```
 $ docker-compose up web
@@ -84,7 +97,7 @@ $ docker-compose up web
 $ docker-compose run --rm web bash
 ```
 
-11. Acessar a página localhost
+13. Acessar a página localhost
 
 `
 http://localhost:3000
