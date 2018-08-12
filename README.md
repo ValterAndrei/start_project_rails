@@ -55,27 +55,26 @@ production:
 $ docker-compose run --rm web rails db:create
 ```
 
-7. Editar o arquivo `config/webpacker.yml`
-
-```
-dev_server:
-  host: 0.0.0.0
-```
-
-8. Instalar a Gem foreman `Gemfile`
+7. Instalar a gem foreman `Gemfile`
 
 ```
 gem 'foreman'
 ```
 
-9. Editar o arquivo `config/environments/development.rb` (inserir no inicio do código)
+8. Editar o arquivo `config/environments/development.rb` (inserir no inicio do código)
 
 ```
 # Add to whitelist the '172.18.0.1' network space in the Web Console config.
 config.web_console.whitelisted_ips = '172.18.0.1'
 ```
 
-10. Inserir a tag na View em que desejar:
+9. Criar home page
+
+```
+rails generate controller home index  --no-helper --no-assets --no-controller-specs --no-view-specs
+```
+
+10. Inserir a tag no arquivo `app/views/home/index.html.erb`
 
 ```
 <%= javascript_pack_tag 'hello_react' %>
@@ -85,6 +84,7 @@ config.web_console.whitelisted_ips = '172.18.0.1'
 
 ```
 $ docker-compose up web
+
 # bash:
 $ docker-compose run --rm web bash
 ```
