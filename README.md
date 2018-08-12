@@ -17,7 +17,6 @@ $ docker-compose build
 ```
 $ docker-compose run --rm web bash
 $ gem install rails -v 5.2.0
-
 ```
 
 4. Construir o projeto
@@ -66,14 +65,14 @@ dev_server:
 8. Instalar a Gem foreman `Gemfile`
 
 ```
-  gem 'foreman'
+gem 'foreman'
 ```
 
 9. Criar na raiz do projeto o arquivo `Procfile.dev` e inserir o código abaixo
 
 ```
-  web: bundle exec rails s -p 3000 -b '0.0.0.0'
-  webpacker: ./bin/webpack-dev-server
+web: bundle exec rails s -p 3000 -b '0.0.0.0'
+webpacker: ./bin/webpack-dev-server
 ```
 
 10. Editar o arquivo `config/environments/development.rb` (inserir no inicio do código)
