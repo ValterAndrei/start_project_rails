@@ -59,8 +59,8 @@ $ docker-compose run --rm web rails db:create
 
 ```
 gem 'foreman'
-
 ```
+
 8. Editar o arquivo `config/webpacker.yml`
 
 ```
@@ -98,6 +98,5 @@ $ docker-compose run --rm web bash
 
 13. Acessar a página localhost
 
-`
 http://localhost:3000
-`
+
