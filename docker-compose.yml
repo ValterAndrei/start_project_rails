@@ -5,6 +5,8 @@ volumes:
 
 services:
   web:
+    tty: true
+    stdin_open: true
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && foreman start -f Procfile.dev"
     volumes:
@@ -15,5 +17,6 @@ services:
       - "3035:3035"
     depends_on:
       - db
+      
   db:
     image: postgres
