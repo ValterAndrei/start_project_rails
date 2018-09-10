@@ -72,7 +72,7 @@ dev_server:
 
 ```
 # Add to whitelist the '172.18.0.1' network space in the Web Console config.
-config.web_console.whitelisted_ips = '172.18.0.1'
+config.web_console.whitelisted_ips = ['192.168.0.0/16', '172.0.0.0/8']
 ```
 
 10. Criar home page
@@ -99,4 +99,3 @@ $ docker-compose run --rm web bash
 13. Acessar a página localhost
 
 http://localhost:3000
-
