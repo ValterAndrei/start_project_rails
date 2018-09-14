@@ -15,7 +15,20 @@ end
 rubocop --auto-gen-config
 ```
 
-3. Desabilitando todas as verificações `.rubocop_todo.yml`
+3. Desabilitando verificações específicas `.rubocop_todo.yml`
+
+```
+Style/TernaryParentheses:
+  Exclude:
+    - 'app/services/measurement_table.rb'
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - 'app/**/*'
+    - 'bin/**/*'
+```
+
+4. Desabilitando todas as verificações usando o AllCops `.rubocop_todo.yml`
 
 ```
 AllCops:
@@ -27,19 +40,7 @@ AllCops:
     - '**/*.rb'
     - '**/Gemfile'
     - 'node_modules/**/*'
-```
-
-4. Desabilitando verificações específicas `.rubocop_todo.yml`
-
-```
-Style/TernaryParentheses:
-  Exclude:
     - 'app/services/measurement_table.rb'
-
-Style/FrozenStringLiteralComment:
-  Exclude:
-    - 'app/**/*'
-    - 'bin/**/*'
 ```
 
 5. Desabilitando verificações dentro do arquivo
@@ -57,5 +58,11 @@ def very_long_method # rubocop:disable Metrics/MethodLength
 end
 ```
 
+7. Executando rubocop para o Rails
 
-[Fonte](https://medium.freecodecamp.org/rubocop-enable-disable-and-configure-linter-checks-for-your-ruby-code-475fbf11046a)
+```
+$ rubocop -R
+```
+
+
+[Documentação](https://rubocop.readthedocs.io/en/latest/basic_usage/)
