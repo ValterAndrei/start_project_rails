@@ -1,12 +1,21 @@
 # Rubocop
 
-1. Gerando o arquivo `.rubocop_todo.yml`
+
+1. Instalando gem rubocop
+
+```
+group :development do
+  gem 'rubocop', require: false
+end
+```
+
+2. Gerando o arquivo de configuração `.rubocop_todo.yml`
 
 ```
 rubocop --auto-gen-config
 ```
 
-2. Desabilitando todas as verificações `.rubocop_todo.yml`
+3. Desabilitando todas as verificações `.rubocop_todo.yml`
 
 ```
 AllCops:
@@ -20,7 +29,7 @@ AllCops:
     - 'node_modules/**/*'
 ```
 
-3. Desabilitando verificações específicas `.rubocop_todo.yml`
+4. Desabilitando verificações específicas `.rubocop_todo.yml`
 
 ```
 Style/TernaryParentheses:
@@ -33,14 +42,14 @@ Style/FrozenStringLiteralComment:
     - 'bin/**/*'
 ```
 
-4. Início do arquivo
+5. Desabilitando verificações dentro do arquivo
 
 ```
 # rubocop:disable all
 # rubocop:disable Metrics/LineLength, Style/StringLiterals
 ```
 
-5. Na frente do método
+6. Desabilitando verificações na frente do método
 
 ```
 def very_long_method # rubocop:disable Metrics/MethodLength
