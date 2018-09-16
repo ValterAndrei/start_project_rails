@@ -64,5 +64,11 @@ end
 $ rubocop -R
 ```
 
+8. Removendo avisos `Ignoring GEM because its extensions are not built`
+
+```
+$ gem pristine --all
+```
+
 
 [Documentação](https://rubocop.readthedocs.io/en/latest/basic_usage/)
