@@ -12,7 +12,7 @@ end
 2. Gerando o arquivo de configuração `.rubocop_todo.yml`
 
 ```
-rubocop --auto-gen-config
+$ rubocop --auto-gen-config
 ```
 
 3. Desabilitando verificações específicas `.rubocop_todo.yml`
