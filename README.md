@@ -73,6 +73,11 @@ dev_server:
 ```
 # Add to whitelist the '172.18.0.1' network space in the Web Console config.
 config.web_console.whitelisted_ips = ['192.168.0.0/16', '172.0.0.0/8']
+
+# Level of logs
+
+config.log_level = :warn
+# config.log_level = :debug
 ```
 
 10. Criar home page
