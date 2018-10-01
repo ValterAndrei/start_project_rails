@@ -74,6 +74,11 @@ Metrics/ClassLength:
 
 ```
 $ rubocop -R
+
+ou adicionando no .rubocop_todo.yml
+
+Rails:
+  Enabled: true
 ```
 
 9. Removendo avisos `Ignoring GEM because its extensions are not built`
