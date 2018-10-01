@@ -12,7 +12,7 @@ end
 2. Gerando o arquivo de configuração `.rubocop_todo.yml`
 
 ```
-$ rubocop --auto-gen-config
+$ rubocop -R --auto-gen-config
 ```
 
 3. Desabilitando verificações específicas `.rubocop_todo.yml`
@@ -26,6 +26,10 @@ Style/FrozenStringLiteralComment:
   Exclude:
     - 'app/**/*'
     - 'bin/**/*'
+
+Metrics/ClassLength:
+  Enabled: false
+  
 ```
 
 4. Desabilitando todas as verificações usando o AllCops `.rubocop_todo.yml`
@@ -58,13 +62,21 @@ def very_long_method # rubocop:disable Metrics/MethodLength
 end
 ```
 
-7. Executando rubocop para o Rails
+7. Adicionando verificação em um arquivo específico
+
+```
+Metrics/ClassLength:
+  Include:
+    - '**/*im.rb'
+```
+
+8. Executando rubocop para o Rails
 
 ```
 $ rubocop -R
 ```
 
-8. Removendo avisos `Ignoring GEM because its extensions are not built`
+9. Removendo avisos `Ignoring GEM because its extensions are not built`
 
 ```
 $ gem pristine --all
