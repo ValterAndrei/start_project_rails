@@ -51,18 +51,28 @@ AllCops:
 
 ```
 # rubocop:disable all
-# rubocop:disable Metrics/LineLength, Style/StringLiterals
 ```
 
-6. Desabilitando verificações na frente do método
+6. Desabilitando verificações em um método
 
 ```
-def very_long_method # rubocop:disable Metrics/MethodLength
+# rubocop:disable Metrics/MethodLength
+
+def very_long_method
   ...
 end
+
+# rubocop:enable Metrics/MethodLength
 ```
 
-7. Adicionando verificação em um arquivo específico
+7. Desabilitando na frente de uma síntaxe
+
+```
+Time.zone.now.strftime("%H:%M").to_time # rubocop:disable Rails/Date
+
+```
+
+8. Adicionando verificação em um arquivo específico
 
 ```
 Metrics/ClassLength:
@@ -70,7 +80,7 @@ Metrics/ClassLength:
     - '**/*er.rb'
 ```
 
-8. Executando rubocop para o Rails
+9. Executando rubocop para o Rails
 
 ```
 $ rubocop --rails
@@ -81,7 +91,7 @@ Rails:
   Enabled: true
 ```
 
-9. Aplicando auto correção
+10. Aplicando auto correção
 
 ```
 $ rubocop --auto-correct file_name.rb
@@ -91,7 +101,7 @@ ou..
 $ rubocop -a --only "Layout/AlignParameters" file_name.rb
 ```
 
-10. Removendo avisos `Ignoring GEM because its extensions are not built`
+11. Removendo avisos `Ignoring GEM because its extensions are not built`
 
 ```
 $ gem pristine --all
