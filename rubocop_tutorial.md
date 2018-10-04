@@ -67,7 +67,7 @@ end
 ```
 Metrics/ClassLength:
   Include:
-    - '**/*im.rb'
+    - '**/*er.rb'
 ```
 
 8. Executando rubocop para o Rails
@@ -85,6 +85,10 @@ Rails:
 
 ```
 $ rubocop --auto-correct file_name.rb
+
+ou..
+
+$ rubocop -a --only "Layout/AlignParameters" file_name.rb
 ```
 
 10. Removendo avisos `Ignoring GEM because its extensions are not built`
