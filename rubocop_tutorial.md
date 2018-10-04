@@ -28,8 +28,7 @@ Style/FrozenStringLiteralComment:
     - 'bin/**/*'
 
 Metrics/ClassLength:
-  Enabled: false
-  
+  Enabled: false  
 ```
 
 4. Desabilitando todas as verificações usando o AllCops `.rubocop_todo.yml`
@@ -69,7 +68,6 @@ end
 
 ```
 Time.zone.now.strftime("%H:%M").to_time # rubocop:disable Rails/Date
-
 ```
 
 8. Adicionando verificação em um arquivo específico
