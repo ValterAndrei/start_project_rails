@@ -73,7 +73,7 @@ Metrics/ClassLength:
 8. Executando rubocop para o Rails
 
 ```
-$ rubocop -R
+$ rubocop --rails
 
 ou adicionando no .rubocop_todo.yml
 
@@ -81,7 +81,13 @@ Rails:
   Enabled: true
 ```
 
-9. Removendo avisos `Ignoring GEM because its extensions are not built`
+9. Aplicando auto correção
+
+```
+$ rubocop --auto-correct file_name.rb
+```
+
+10. Removendo avisos `Ignoring GEM because its extensions are not built`
 
 ```
 $ gem pristine --all
