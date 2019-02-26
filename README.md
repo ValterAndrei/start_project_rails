@@ -25,6 +25,7 @@ $ gem install rails -v 5.2.0
 $ docker-compose run --rm web rails new . -T --force --database=postgresql --webpack --skip-coffee
 
 # optional
+$ docker-compose run --rm web rails webpacker:install
 $ docker-compose run --rm web rails webpacker:install:react
 ```
 
