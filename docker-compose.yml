@@ -18,6 +18,8 @@ services:
       - "3035:3035"
     depends_on:
       - db
+    links:
+      - db:dbhost
 
   db:
     image: postgres
