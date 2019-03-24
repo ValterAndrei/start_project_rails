@@ -5,7 +5,7 @@ RUN apt-get update -qq \
     postgresql-client nodejs locales wget nano vim \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
     && apt-get install -y nodejs
 
 RUN apt-get update && apt-get install -y curl apt-transport-https wget && \
