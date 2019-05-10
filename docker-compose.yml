@@ -16,10 +16,18 @@ services:
     ports:
       - "3000:3000"
       - "3035:3035"
-    depends_on:
-      - db
     links:
-      - db:dbhost
+      - db-my-app
+    environment:
+      TZ:           America/Sao_Paulo
+      DATABASE_URL: postgres://postgres@db-my-app
 
-  db:
+  db-my-app:
     image: postgres
+    ports:
+      - "5432:5432"
+
+# networks:
+#   default:
+#     external:
+#       name: my-app
