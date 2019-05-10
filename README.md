@@ -1,4 +1,4 @@
-# Iniciando um novo projeto utilizando o Docker
+# Iniciando um novo projeto utilizando o docker-compose
 
 1. Remover git init
 
