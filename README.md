@@ -1,106 +1,163 @@
 # Iniciando um novo projeto utilizando o docker-compose
 
-1. Remover git init
+1. Criando os arquivos
 
 ```
-$ rm -rf .git
+$ touch Dockerfile docker-compose.yml Procfile.dev
 ```
 
-2. Instalar ambiente
+* Dockerfile
 
 ```
-$ docker-compose build
+FROM ruby:latest
+
+RUN apt-get update -qq && apt-get install -y build-essential nodejs tzdata libpq-dev \
+  postgresql-client && rm -rf /var/lib/apt/lists/*
+
+RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
+RUN apt-get install -y nodejs
+
+RUN npm install -g yarn
+RUN yarn install --check-files
+
+COPY . /usr/src/app
+WORKDIR /usr/src/app
 ```
 
-3. Instalar o Rails
+* docker-compose.yml
 
 ```
-$ docker-compose run --rm web bash
-$ gem install rails -v 5.2.0
+version: '3.7'
+
+volumes:
+  gems-app:
+
+services:
+  web:
+    tty: true
+    stdin_open: true
+    build: .
+    environment:
+      REDIS_URL: 'redis://redis:6379/12'
+      DATABASE_URL: postgres://postgres@db
+    command: foreman start -f Procfile.dev
+    volumes:
+      - ./:/usr/src/app
+      - gems-app:/usr/local/bundle
+    ports:
+      - '3000:3000'
+      - '3035:3035'
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres
+
+  redis:
+    image: redis
+    command: redis-server
+    ports:
+      - '6379:6379'
+
+  sidekiq:
+    build: .
+    environment:
+      REDIS_URL: 'redis://redis:6379/12'
+    command: bundle exec sidekiq -C ./config/sidekiq.yml
+    volumes:
+      - ./:/usr/src/app
+      - gems-app:/usr/local/bundle
+    depends_on:
+      - db
+      - redis
 ```
 
-4. Construir o projeto
+* Procfile.dev
 
 ```
-$ docker-compose run --rm web rails new . -T --force --database=postgresql --webpack --skip-coffee
-
-# optional
-$ docker-compose run --rm web rails webpacker:install
-$ docker-compose run --rm web rails webpacker:install:react
+web: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+webpacker: ./bin/webpack-dev-server
+# worker: bundle exec sidekiq -C ./config/sidekiq.yml
 ```
 
-5. Editar o arquivo `config/database.yml`
+2. Instalar o Rails 6
 
 ```
-development: &default
-  adapter: postgresql
-  database: myapp_development
-  encoding: unicode
-  username: user
-  password:
-  pool: 5
-
-test:
-  <<: *default
-  database: myapp_test
-
-production:
-  <<: *default
-  database: myapp_production
+$ docker-compose run --rm web gem install rails -v 6.0.0.rc1
 ```
 
-6. Criar banco de dados
+3. Criar o projeto
 
 ```
-$ docker-compose run --rm web rails db:create
+$ docker-compose run --rm web rails new . -T --force --database=postgresql
 ```
 
-7. Instalar a gem foreman `Gemfile`
+4. Adicionar a gem foreman em seu `Gemfile`
 
 ```
 gem 'foreman'
+
+# execute o bundle em seguida:
+$ docker-compose run --rm web bundle
 ```
 
-8. Editar o arquivo `config/webpacker.yml`
+5. Instalando configurações do webpacker
+
+```
+$ docker-compose run --rm web rails webpacker:install
+
+# optional
+$ docker-compose run --rm web rails webpacker:install:react
+
+<%= javascript_pack_tag 'hello_react' %>
+```
+
+6. Editar a configuração host do webpacker `config/webpacker.yml`
 
 ```
 dev_server:
   host: 0.0.0.0
 ```
 
-9. Editar o arquivo `config/environments/development.rb` (inserir no inicio do código)
+7. Editar o arquivo `config/environments/development.rb`
 
 ```
 # Add to whitelist the '172.18.0.1' network space in the Web Console config.
 config.web_console.whitelisted_ips = ['192.168.0.0/16', '172.0.0.0/8']
-
-# Level of logs
-
-config.log_level = :warn
-# config.log_level = :debug
 ```
 
-10. Criar home page
+8. Configurando o banco de dados `database.yml`
 
 ```
-rails generate controller home index  --no-helper --no-assets --no-controller-specs --no-view-specs
+development: &default
+  adapter: postgresql
+  database: chat_tutorial_development
+  encoding: unicode
+  username: postgres
+  password:
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  url: <%= ENV['DATABASE_URL'] %>
+
+test:
+  <<: *default
+  database: chat_tutorial_test
+
+production:
+  <<: *default
+  database: chat_tutorial_production
 ```
 
-11. Inserir a tag no arquivo `app/views/home/index.html.erb`
+9. Criando o banco de dados
 
 ```
-<%= javascript_pack_tag 'hello_react' %>
+$ docker-compose run --rm web rails db:create
 ```
 
-12. Subir aplicação
+10. Subindo seu servidor
 
 ```
 $ docker-compose up web
-
-# bash:
-$ docker-compose run --rm web bash
 ```
 
-13. Acessar a página localhost
-
-http://localhost:3000
+11. Acessar o endereço `localhost:3000`
