@@ -78,7 +78,7 @@ services:
 ```
 web: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
 webpacker: ./bin/webpack-dev-server
-# worker: bundle exec sidekiq -C ./config/sidekiq.yml
+worker: bundle exec sidekiq -C ./config/sidekiq.yml
 ```
 
 2. Instalar o Rails 6
