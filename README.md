@@ -102,10 +102,9 @@ gem 'foreman'
 $ docker-compose run --rm web bundle
 ```
 
-5. Instalando configurações do webpacker (opcional)
+5. Instalando react (opcional)
 
 ```
-$ docker-compose run --rm web rails webpacker:install
 $ docker-compose run --rm web rails webpacker:install:react
 
 <%= javascript_pack_tag 'hello_react' %>
