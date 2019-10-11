@@ -84,7 +84,7 @@ worker: bundle exec sidekiq -C ./config/sidekiq.yml
 2. Instalar o Rails 6
 
 ```
-$ docker-compose run --rm web gem install rails -v 6.0.0.rc1
+$ docker-compose run --rm web gem install rails -v 6.0.0
 ```
 
 3. Criar o projeto
@@ -102,12 +102,10 @@ gem 'foreman'
 $ docker-compose run --rm web bundle
 ```
 
-5. Instalando configurações do webpacker
+5. Instalando configurações do webpacker (opcional)
 
 ```
 $ docker-compose run --rm web rails webpacker:install
-
-# optional
 $ docker-compose run --rm web rails webpacker:install:react
 
 <%= javascript_pack_tag 'hello_react' %>
@@ -132,20 +130,20 @@ config.web_console.whitelisted_ips = ['192.168.0.0/16', '172.0.0.0/8']
 ```
 development: &default
   adapter: postgresql
-  database: chat_tutorial_development
+  database: my_app_development
   encoding: unicode
   username: postgres
   password:
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  url: <%= ENV['DATABASE_URL'] %>
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
+  url: <%= ENV.fetch('DATABASE_URL') %>
 
 test:
   <<: *default
-  database: chat_tutorial_test
+  database: my_app_test
 
 production:
   <<: *default
-  database: chat_tutorial_production
+  database: my_app_production
 ```
 
 9. Criando o banco de dados
