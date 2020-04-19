@@ -27,7 +27,7 @@ WORKDIR /usr/src/app
 * docker-compose.yml
 
 ```
-version: '3.7'
+version: '3.6'
 
 volumes:
   gems-app:
@@ -131,10 +131,10 @@ development: &default
   adapter: postgresql
   database: my_app_development
   encoding: unicode
+  host: db
   username: postgres
   password:
   pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
-  url: <%= ENV.fetch('DATABASE_URL') %>
 
 test:
   <<: *default
@@ -148,6 +148,7 @@ production:
 9. Criando o banco de dados
 
 ```
+$ docker-compose up -d db
 $ docker-compose run --rm web rails db:create
 ```
 
