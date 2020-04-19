@@ -39,7 +39,6 @@ services:
     build: .
     environment:
       REDIS_URL: 'redis://redis:6379/12'
-      DATABASE_URL: postgres://postgres@db
     command: foreman start -f Procfile.dev
     volumes:
       - ./:/usr/src/app
