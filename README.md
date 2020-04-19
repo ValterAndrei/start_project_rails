@@ -52,6 +52,11 @@ services:
 
   db:
     image: postgres
+    environment:
+      POSTGRES_DB: "db"
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
 
   redis:
     image: redis
