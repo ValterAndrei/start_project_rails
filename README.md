@@ -52,9 +52,6 @@ services:
 
   db:
     image: postgres
-    environment:
-      POSTGRES_DB: "db"
-      POSTGRES_HOST_AUTH_METHOD: "trust"
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
 
@@ -156,13 +153,23 @@ $ docker-compose up -d db
 $ docker-compose run --rm web rails db:create
 ```
 
-10. Subindo seu servidor
+10. Acessando banco de dados
+
+```
+$ docker exec -it my_app_db_1 psql -U postgres
+
+Ou:
+
+$ docker-compose run --rm db psql -d postgres://postgres@db/my_app_development
+```
+
+11. Subindo seu servidor
 
 ```
 $ docker-compose up web
 ```
 
-11. Acessar o endereço `localhost:3000`
+12. Acessar o endereço `localhost:3000`
 
 
 [Referência](https://gist.github.com/erdostom/5dd400cbba17d44b52b2f74b038fcb85)
