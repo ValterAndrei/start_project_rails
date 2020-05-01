@@ -156,7 +156,7 @@ $ docker-compose run --rm web rails db:create
 10. Acessando banco de dados
 
 ```
-$ docker exec -it my_app_db_1 psql -U postgres
+$ docker-compose run --rm db psql -h db -U postgres
 
 Ou:
 
