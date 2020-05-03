@@ -9,12 +9,12 @@ $ touch Dockerfile docker-compose.yml Procfile.dev
 * Dockerfile
 
 ```
-FROM ruby:2.6.3
+FROM ruby:2.6.6
 
 RUN apt-get update -qq && apt-get install -y build-essential nodejs tzdata libpq-dev \
   postgresql-client && rm -rf /var/lib/apt/lists/*
 
-RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y nodejs
 
 RUN npm install -g yarn
@@ -85,7 +85,7 @@ worker: bundle exec sidekiq -C ./config/sidekiq.yml
 2. Instalar o Rails 6
 
 ```
-$ docker-compose run --rm web gem install rails -v 6.0.0
+$ docker-compose run --rm web gem install rails -v 6.0.2
 ```
 
 3. Criar o projeto
@@ -149,7 +149,6 @@ production:
 9. Criando o banco de dados
 
 ```
-$ docker-compose up -d db
 $ docker-compose run --rm web rails db:create
 ```
 
