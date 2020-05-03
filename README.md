@@ -88,7 +88,7 @@ worker: bundle exec sidekiq -C ./config/sidekiq.yml
 2. Instalar o Rails 6
 
 ```
-$ docker-compose run --rm web gem install rails -v 6.0.2
+$ sudo docker-compose run --rm web gem install rails -v 6.0.2
 ```
 
 3. Criar o projeto
