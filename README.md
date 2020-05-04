@@ -106,17 +106,21 @@ gem 'foreman'
 $ docker-compose run --rm web bundle
 ```
 
-5. Instalando react (opcional)
+5. Trocando permissão dos arquivos
+
+```
+$ sudo chown -R $USER:$USER .
+```
+
+6. Instalando react (opcional)
 
 ```
 $ docker-compose run --rm web rails webpacker:install:react
 
 <%= javascript_pack_tag 'hello_react' %>
-```
 
-6. Editar a configuração host do webpacker `config/webpacker.yml`
+# Editar a configuração host do webpacker `config/webpacker.yml`
 
-```
 dev_server:
   host: 0.0.0.0
 ```
