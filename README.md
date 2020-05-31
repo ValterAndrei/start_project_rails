@@ -98,19 +98,19 @@ $ docker-compose run --rm web gem install rails -v 6.0.3
 $ docker-compose run --rm web rails new . -T --force --database=postgresql
 ```
 
-4. Adicionar a gem foreman em seu `Gemfile`
+4. Trocando permissão dos arquivos
+
+```
+$ sudo chown -R $USER:$USER .
+```
+
+5. Adicionar a gem foreman em seu `Gemfile`
 
 ```
 gem 'foreman'
 
 # execute o bundle em seguida:
 $ docker-compose run --rm web bundle
-```
-
-5. Trocando permissão dos arquivos
-
-```
-$ sudo chown -R $USER:$USER .
 ```
 
 6. Instalando react (opcional)
