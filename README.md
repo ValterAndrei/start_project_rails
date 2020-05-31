@@ -38,6 +38,7 @@ services:
     stdin_open: true
     build: .
     environment:
+      DB_HOST: 'db'
       REDIS_URL: 'redis://redis:6379/12'
     command: foreman start -f Procfile.dev
     volumes:
@@ -55,7 +56,6 @@ services:
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: 'db'
       POSTGRES_HOST_AUTH_METHOD: 'trust'
 
   redis:
@@ -67,8 +67,9 @@ services:
   sidekiq:
     build: .
     environment:
+      DB_HOST: 'db'
       REDIS_URL: 'redis://redis:6379/12'
-    command: bundle exec sidekiq -C ./config/sidekiq.yml
+    command: bundle exec sidekiq --config ./config/sidekiq.yml
     volumes:
       - ./:/usr/src/app
       - gems-app:/usr/local/bundle
@@ -82,13 +83,13 @@ services:
 ```
 web: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
 webpacker: ./bin/webpack-dev-server
-worker: bundle exec sidekiq -C ./config/sidekiq.yml
+worker: bundle exec sidekiq --config ./config/sidekiq.yml
 ```
 
 2. Instalar o Rails 6
 
 ```
-$ sudo docker-compose run --rm web gem install rails -v 6.0.2
+$ sudo docker-compose run --rm web gem install rails -v 6.0.3
 ```
 
 3. Criar o projeto
@@ -139,7 +140,7 @@ development: &default
   adapter: postgresql
   database: my_app_development
   encoding: unicode
-  host: db
+  host: <%= ENV.fetch('DB_HOST') %>
   username: postgres
   password:
   pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
