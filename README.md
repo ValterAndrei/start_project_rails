@@ -53,8 +53,6 @@ services:
 
   db:
     image: postgres
-    volumes:
-      - ./tmp/db:/var/lib/postgresql/data
     environment:
       POSTGRES_HOST_AUTH_METHOD: 'trust'
 
@@ -136,22 +134,27 @@ config.web_console.whitelisted_ips = ['192.168.0.0/16', '172.0.0.0/8']
 8. Configurando o banco de dados `database.yml`
 
 ```
-development: &default
+default: &default
   adapter: postgresql
-  database: my_app_development
   encoding: unicode
-  host: <%= ENV.fetch('DB_HOST') %>
   username: postgres
-  password:
-  pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  host: <%= ENV.fetch('DB_HOST') %>
+  database: app_development
 
 test:
   <<: *default
-  database: my_app_test
+  host: <%= ENV.fetch('DB_HOST') %>
+  database: app_test
 
 production:
   <<: *default
-  database: my_app_production
+  database: app_production
+  username: app
+  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
 ```
 
 9. Criando o banco de dados
