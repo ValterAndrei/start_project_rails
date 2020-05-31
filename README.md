@@ -1,4 +1,4 @@
-# Iniciando um novo projeto utilizando o docker-compose
+### Iniciando um novo projeto utilizando o docker-compose
 
 1. Criando os arquivos
 
