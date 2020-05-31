@@ -67,7 +67,7 @@ services:
     environment:
       DB_HOST: 'db'
       REDIS_URL: 'redis://redis:6379/12'
-    command: bundle exec sidekiq --config ./config/sidekiq.yml
+    command: bundle exec sidekiq
     volumes:
       - ./:/usr/src/app
       - gems-app:/usr/local/bundle
@@ -81,7 +81,7 @@ services:
 ```
 web: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
 webpacker: ./bin/webpack-dev-server
-worker: bundle exec sidekiq --config ./config/sidekiq.yml
+worker: bundle exec sidekiq
 ```
 
 2. Instalar o Rails 6
