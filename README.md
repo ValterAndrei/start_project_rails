@@ -144,12 +144,12 @@ default: &default
 
 development:
   <<: *default
-  host: <%= ENV.fetch('DB_HOST') %>
+  host: <%= ENV['DB_HOST'] %>
   database: app_development
 
 test:
   <<: *default
-  host: <%= ENV.fetch('DB_HOST') %>
+  host: <%= ENV['DB_HOST'] %>
   database: app_test
 
 production:
