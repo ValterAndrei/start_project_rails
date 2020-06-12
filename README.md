@@ -1,6 +1,6 @@
-### Iniciando um novo projeto utilizando o docker-compose
+### Starting a new project using the docker-compose
 
-1. Criando os arquivos
+1. Create files
 
 ```
 $ touch Dockerfile docker-compose.yml Procfile.dev
@@ -84,54 +84,56 @@ webpacker: ./bin/webpack-dev-server
 worker: bundle exec sidekiq
 ```
 
-2. Instalar o Rails 6
+2. Install Rails
 
 ```
 $ docker-compose run --rm web gem install rails -v 6.0.3
 ```
 
-3. Criar o projeto
+3. Build project
 
 ```
 $ docker-compose run --rm web rails new . -T --force --database=postgresql
 ```
 
-4. Trocando permissão dos arquivos
+4. Changing file permission
 
 ```
 $ sudo chown -R $USER:$USER .
 ```
 
-5. Adicionar a gem foreman em seu `Gemfile`
+5. Add foreman gem to your `Gemfile`
 
 ```
 gem 'foreman'
+```
 
-# execute o bundle em seguida:
+6. Run *bundle*
+```
 $ docker-compose run --rm web bundle
 ```
 
-6. Instalando react (opcional)
+7. Install front-end framework [react] - *optional*
 
 ```
 $ docker-compose run --rm web rails webpacker:install:react
 
 <%= javascript_pack_tag 'hello_react' %>
 
-# Editar a configuração host do webpacker `config/webpacker.yml`
+# Edit the host configuration of the webpacker file `config/webpacker.yml`
 
 dev_server:
   host: 0.0.0.0
 ```
 
-7. Editar o arquivo `config/environments/development.rb`
+8. Edit `config/environments/development.rb`
 
 ```
 # Add to whitelist the '172.18.0.1' network space in the Web Console config.
 config.web_console.whitelisted_ips = ['192.168.0.0/16', '172.0.0.0/8']
 ```
 
-8. Configurando o banco de dados `database.yml`
+9. Configure database `database.yml`
 
 ```
 default: &default
@@ -157,29 +159,29 @@ production:
   password: <%= ENV['APP_DATABASE_PASSWORD'] %>
 ```
 
-9. Criando o banco de dados
+10. Create database
 
 ```
 $ docker-compose run --rm web rails db:create
 ```
 
-10. Acessando banco de dados
+11. Access database - *optional*
 
 ```
 $ docker-compose run --rm db psql -h db -U postgres
 
-Ou:
+# Or:
 
 $ docker-compose run --rm db psql -d postgres://postgres@db/my_app_development
 ```
 
-11. Subindo seu servidor
+12. Up server
 
 ```
 $ docker-compose up web
 ```
 
-12. Acessar o endereço `localhost:3000`
+> `localhost:3000`
 
 
-[Referência](https://gist.github.com/erdostom/5dd400cbba17d44b52b2f74b038fcb85)
+[Reference](https://gist.github.com/erdostom/5dd400cbba17d44b52b2f74b038fcb85)
