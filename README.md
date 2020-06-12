@@ -1,4 +1,4 @@
-### Starting a new project using the docker-compose
+### Starting a new Rails project using docker-compose
 
 1. Create files
 
