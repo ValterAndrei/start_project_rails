@@ -8,7 +8,7 @@ $ touch Dockerfile docker-compose.yml Procfile.dev
 
 * Dockerfile
 
-```
+```dockerfile
 FROM ruby:2.6.6
 
 RUN apt-get update -qq && apt-get install -y build-essential nodejs tzdata libpq-dev \
@@ -26,7 +26,7 @@ WORKDIR /usr/src/app
 
 * docker-compose.yml
 
-```
+```yml
 version: '3.6'
 
 volumes:
@@ -135,7 +135,7 @@ config.web_console.whitelisted_ips = ['192.168.0.0/16', '172.0.0.0/8']
 
 9. Configure database `database.yml`
 
-```
+```yml
 default: &default
   adapter: postgresql
   encoding: unicode
