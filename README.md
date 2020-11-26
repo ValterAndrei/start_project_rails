@@ -87,7 +87,7 @@ worker: bundle exec sidekiq
 2. Install Rails
 
 ```
-$ docker-compose run --rm web gem install rails -v 6.0.3
+$ docker-compose run --rm web gem install rails -v 6.0.3.4
 ```
 
 3. Build project
@@ -172,7 +172,7 @@ $ docker-compose run --rm db psql -h db -U postgres
 
 # Or:
 
-$ docker-compose run --rm db psql -d postgres://postgres@db/my_app_development
+$ docker-compose run --rm db psql -d postgres://postgres@db/app_development
 ```
 
 12. Up server
