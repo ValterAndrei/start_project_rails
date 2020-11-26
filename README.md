@@ -9,7 +9,7 @@ $ touch Dockerfile docker-compose.yml Procfile.dev
 * Dockerfile
 
 ```dockerfile
-FROM ruby:2.6.6
+FROM ruby:2.7
 
 RUN apt-get update -qq && apt-get install -y build-essential nodejs tzdata libpq-dev \
   postgresql-client && rm -rf /var/lib/apt/lists/*
@@ -27,7 +27,7 @@ WORKDIR /usr/src/app
 * docker-compose.yml
 
 ```yml
-version: '3.6'
+version: '3.7'
 
 volumes:
   gems-app:
