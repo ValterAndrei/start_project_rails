@@ -9,7 +9,7 @@ $ touch Dockerfile docker-compose.yml Procfile.dev
 * Dockerfile
 
 ```dockerfile
-FROM ruby:2.7
+FROM ruby:3.0.0
 
 RUN apt-get update -qq && apt-get install -y build-essential nodejs tzdata libpq-dev \
   postgresql-client && rm -rf /var/lib/apt/lists/*
@@ -87,7 +87,7 @@ worker: bundle exec sidekiq
 2. Install Rails
 
 ```
-$ docker-compose run --rm web gem install rails -v 6.0.3.4
+$ docker-compose run --rm web gem install rails -v 6.1.3
 ```
 
 3. Build project
@@ -126,14 +126,7 @@ dev_server:
   host: 0.0.0.0
 ```
 
-8. Edit `config/environments/development.rb`
-
-```
-# Add to whitelist the '172.18.0.1' network space in the Web Console config.
-config.web_console.whitelisted_ips = ['192.168.0.0/16', '172.0.0.0/8']
-```
-
-9. Configure database `database.yml`
+8. Configure database `database.yml`
 
 ```yml
 default: &default
@@ -159,13 +152,13 @@ production:
   password: <%= ENV['APP_DATABASE_PASSWORD'] %>
 ```
 
-10. Create database
+9. Create database
 
 ```
 $ docker-compose run --rm web rails db:create
 ```
 
-11. Access database - *optional*
+10. Access database - *optional*
 
 ```
 $ docker-compose run --rm db psql -h db -U postgres
@@ -175,7 +168,7 @@ $ docker-compose run --rm db psql -h db -U postgres
 $ docker-compose run --rm db psql -d postgres://postgres@db/app_development
 ```
 
-12. Up server
+11. Up server
 
 ```
 $ docker-compose up web
