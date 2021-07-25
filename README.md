@@ -113,7 +113,18 @@ gem 'foreman'
 $ docker-compose run --rm web bundle
 ```
 
-7. Configure database `database.yml`
+7. Install front-end framework [vue] - *optional*
+
+```
+$ docker-compose run --rm web rails webpacker:install:vue
+
+# Edit the host configuration of the webpacker file `config/webpacker.yml`
+
+dev_server:
+  host: 0.0.0.0
+```
+
+8. Configure database `database.yml`
 
 ```yml
 default: &default
@@ -139,13 +150,13 @@ production:
   password: <%= ENV['APP_DATABASE_PASSWORD'] %>
 ```
 
-8. Create database
+9. Create database
 
 ```
 $ docker-compose run --rm web rails db:create
 ```
 
-9. Access database - *optional*
+10. Access database - *optional*
 
 ```
 $ docker-compose run --rm db psql -h db -U postgres
@@ -155,7 +166,7 @@ $ docker-compose run --rm db psql -h db -U postgres
 $ docker-compose run --rm db psql -d postgres://postgres@db/app_development
 ```
 
-10. Up server
+11. Up server
 
 ```
 $ docker-compose up web
