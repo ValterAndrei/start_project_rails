@@ -9,16 +9,10 @@ $ touch Dockerfile docker-compose.yml Procfile.dev
 * Dockerfile
 
 ```dockerfile
-FROM ruby:3.0.0
+FROM ruby:3.1
 
-RUN apt-get update -qq && apt-get install -y build-essential nodejs tzdata libpq-dev \
+RUN apt-get update -qq && apt-get install -y build-essential tzdata libpq-dev \
   postgresql-client && rm -rf /var/lib/apt/lists/*
-
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-RUN apt-get install -y nodejs
-
-RUN npm install -g yarn
-RUN yarn install --check-files
 
 COPY . /usr/src/app
 WORKDIR /usr/src/app
@@ -87,7 +81,7 @@ worker: bundle exec sidekiq
 2. Install Rails
 
 ```
-$ docker-compose run --rm web gem install rails -v 6.1.4
+$ docker-compose run --rm web gem install rails -v 7.0.2.2
 ```
 
 3. Build project
