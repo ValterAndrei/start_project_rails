@@ -155,7 +155,7 @@ $ docker-compose run --rm web rails db:create
 ```
 $ docker-compose run --rm db psql -h db -U postgres
 
-# Or:
+# or:
 
 $ docker-compose run --rm db psql -d postgres://postgres@db/app_development
 ```
