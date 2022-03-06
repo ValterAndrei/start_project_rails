@@ -168,5 +168,5 @@ $ docker-compose up web
 
 > `localhost:3000`
 
-
-[Reference](https://gist.github.com/erdostom/5dd400cbba17d44b52b2f74b038fcb85)
+### Deploying at Heroku
+- [Tutorial](https://devcenter.heroku.com/articles/getting-started-with-rails6)
