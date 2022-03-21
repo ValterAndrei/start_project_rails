@@ -79,7 +79,7 @@ worker: bundle exec sidekiq
 2. Install Rails
 
 ```
-$ docker-compose run --rm web gem install rails -v 7.0.2.2
+$ docker-compose run --rm web gem install rails -v 7.0.2.3
 ```
 
 3. Build project
