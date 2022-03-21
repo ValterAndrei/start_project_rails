@@ -3,7 +3,7 @@
 1. Create files
 
 ```
-$ touch Dockerfile docker-compose.yml Procfile.dev
+touch Dockerfile docker-compose.yml Procfile.dev
 ```
 
 * Dockerfile
@@ -79,19 +79,19 @@ worker: bundle exec sidekiq
 2. Install Rails
 
 ```
-$ docker-compose run --rm web gem install rails -v 7.0.2.3
+docker-compose run --rm web gem install rails -v 7.0.2.3
 ```
 
 3. Build project
 
 ```
-$ docker-compose run --rm web rails new . -T --force --database=postgresql
+docker-compose run --rm web rails new . -T --force --database=postgresql
 ```
 
 4. Changing file permission
 
 ```
-$ sudo chown -R $USER:$USER .
+sudo chown -R $USER:$USER .
 ```
 
 5. Add foreman gem to your `Gemfile`
@@ -102,13 +102,13 @@ gem 'foreman'
 
 6. Run *bundle*
 ```
-$ docker-compose run --rm web bundle
+docker-compose run --rm web bundle
 ```
 
 7. Install front-end framework [vue] - *optional*
 
 ```
-$ docker-compose run --rm web rails webpacker:install:vue
+docker-compose run --rm web rails webpacker:install:vue
 
 # Edit the host configuration of the webpacker file `config/webpacker.yml`
 
@@ -145,23 +145,23 @@ production:
 9. Create database
 
 ```
-$ docker-compose run --rm web rails db:create
+docker-compose run --rm web rails db:create
 ```
 
 10. Access database - *optional*
 
 ```
-$ docker-compose run --rm db psql -h db -U postgres
+docker-compose run --rm db psql -h db -U postgres
 
 # or:
 
-$ docker-compose run --rm db psql -d postgres://postgres@db/app_development
+docker-compose run --rm db psql -d postgres://postgres@db/app_development
 ```
 
 11. Up server
 
 ```
-$ docker-compose up web
+docker-compose up web
 ```
 
 > `localhost:3000`
