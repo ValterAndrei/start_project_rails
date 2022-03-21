@@ -32,7 +32,6 @@ services:
     stdin_open: true
     build: .
     environment:
-      DB_HOST: 'db'
       REDIS_URL: 'redis://redis:6379/12'
     command: foreman start -f Procfile.dev
     volumes:
@@ -59,7 +58,6 @@ services:
   sidekiq:
     build: .
     environment:
-      DB_HOST: 'db'
       REDIS_URL: 'redis://redis:6379/12'
     command: bundle exec sidekiq
     volumes:
@@ -129,12 +127,12 @@ default: &default
 
 development:
   <<: *default
-  host: <%= ENV['DB_HOST'] %>
+  host: db
   database: app_development
 
 test:
   <<: *default
-  host: <%= ENV['DB_HOST'] %>
+  host: db
   database: app_test
 
 production:
