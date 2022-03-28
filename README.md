@@ -83,7 +83,7 @@ docker-compose run --rm web gem install rails -v 7.0.2.3
 3. Build project
 
 ```
-docker-compose run --rm web rails new . -T --api --force --database=postgresql
+docker-compose run --rm web rails new . -T --api --skip-javascript --force --database=postgresql
 ```
 
 4. Changing file permission
