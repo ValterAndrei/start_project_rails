@@ -148,7 +148,7 @@ docker-compose run --rm db psql -h db -U postgres
 
 # or:
 
-docker-compose run --rm db psql -d postgres://postgres@db/app_development
+docker-compose run --rm db psql -d postgres://username:password@db_url/app_development
 ```
 
 10. Up server
