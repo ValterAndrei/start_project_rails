@@ -33,5 +33,6 @@ rails-new playground \
   --skip-sprockets \
   --skip-javascript \
   --skip-hotwire \
-  --skip-system-test
+  --skip-system-test \
+  --devcontainer
 ```
