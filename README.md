@@ -24,5 +24,14 @@ sudo chmod +x /usr/local/bin/rails-new
 rails-new --help
 
 # gerar um app exemplo
-rails-new minha_app_exemplo
+rails-new playground \
+  --api \
+  --database=postgresql \
+  --skip-action-mailbox \
+  --skip-action-text \
+  --skip-active-storage \
+  --skip-sprockets \
+  --skip-javascript \
+  --skip-hotwire \
+  --skip-system-test
 ```
