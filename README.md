@@ -15,6 +15,7 @@ curl -L -o rails-new.tar.gz \
 tar -xzf rails-new.tar.gz
 # isso deve criar um executável chamado `rails-new` no diretório atual
 
+# mover para /usr/local/bin
 sudo mv rails-new /usr/local/bin/rails-new
 sudo chmod +x /usr/local/bin/rails-new
 ```
