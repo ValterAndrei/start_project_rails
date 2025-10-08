@@ -8,6 +8,7 @@
 curl -L -o rails-new.tar.gz \
   "https://github.com/rails/rails-new/releases/download/v0.5.0/rails-new-x86_64-unknown-linux-gnu.tar.gz"
 ```
+> Conferir últimas [releases](https://github.com/rails/rails-new/releases)
 
 2. Descompactar e instalar
 ```bash
