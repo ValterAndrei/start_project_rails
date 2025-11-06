@@ -36,5 +36,6 @@ rails-new playground \
   --skip-javascript \
   --skip-hotwire \
   --skip-system-test \
+  --skip-kamal \
   --devcontainer
 ```
