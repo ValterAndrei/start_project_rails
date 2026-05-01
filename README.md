@@ -38,4 +38,6 @@ rails-new playground \
   --skip-system-test \
   --skip-kamal \
   --devcontainer
+
+# rails new safe_room --css=tailwind --database=postgresql --devcontainer --skip-system-test
 ```
