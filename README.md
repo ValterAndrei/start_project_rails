@@ -39,5 +39,5 @@ rails-new playground \
   --skip-kamal \
   --devcontainer
 
-# rails-new safe_room --css=tailwind --database=postgresql --skip-action-mailbox --skip-kamal --devcontainer
+# rails-new safe_room --css=tailwind --database=postgresql --skip-action-mailbox --skip-system-test --skip-kamal --devcontainer
 ```
